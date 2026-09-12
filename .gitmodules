@@ -1,0 +1,12 @@
+[submodule "aibox-mac"]
+	path = aibox-mac
+	url = git@github.com:minicoursedev/aibox-mac.git
+[submodule "aibox-firmware"]
+	path = aibox-firmware
+	url = git@github.com:minicoursedev/aibox-firmware.git
+[submodule "aibox-remote"]
+	path = aibox-remote
+	url = git@github.com:minicoursedev/aibox-remote.git
+[submodule "aibox-spec"]
+	path = aibox-spec
+	url = git@github.com:minicoursedev/aibox-spec.git
