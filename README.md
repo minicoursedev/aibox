@@ -1,34 +1,36 @@
 # AIBox
 
-以實體裝置燈號提示 AI 回覆結束或授權請求，透過搖動／聲音事件讓桌面端開啟對應對話。
+**English** | [繁體中文](README.zh-TW.md)
 
-## 專案組成
+AIBox uses a physical device's lights to signal when an AI response ends or an approval is requested. Shake or sound events let the desktop app open the corresponding conversation.
 
-| Repository | 職責 |
+## Repositories
+
+| Repository | Responsibility |
 |---|---|
-| [aibox-mac](https://github.com/minicoursedev/aibox-mac) | macOS 選單列 App、通知、SSH 連線管理與 BLE |
-| [aibox-firmware](https://github.com/minicoursedev/aibox-firmware) | XIAO nRF52840 Sense 韌體、LED 與感測器 |
-| [aibox-remote](https://github.com/minicoursedev/aibox-remote) | 遠端通知安裝與轉送 Python 程式 |
-| [aibox-spec](https://github.com/minicoursedev/aibox-spec) | 共用規格、通訊協定與驗證紀錄 |
+| [aibox-mac](https://github.com/minicoursedev/aibox-mac) | macOS menu bar app, notifications, SSH connection management, and BLE |
+| [aibox-firmware](https://github.com/minicoursedev/aibox-firmware) | XIAO nRF52840 Sense firmware, LEDs, and sensors |
+| [aibox-remote](https://github.com/minicoursedev/aibox-remote) | Python scripts for installing and forwarding remote notifications |
+| [aibox-spec](https://github.com/minicoursedev/aibox-spec) | Shared specifications, protocols, and validation records |
 
-Windows App 尚未建立。此 repo 是整合入口，以 Git submodule 固定各元件的 commit。
+A Windows app has not been created yet. This repository is the integration entry point and pins each component to a specific commit using Git submodules.
 
-## 取得完整工作目錄
+## Clone the complete workspace
 
-所有元件均為公開 repository，可直接透過 HTTPS 取得，不需要 GitHub SSH 金鑰。
+All components are public repositories. Clone over HTTPS without configuring a GitHub SSH key.
 
 ```sh
 git clone --recurse-submodules https://github.com/minicoursedev/aibox.git
 cd aibox
 ```
 
-既有 checkout 更新後，執行：
+After updating an existing checkout, run:
 
 ```sh
 git submodule update --init --recursive
 ```
 
-## 開發與驗證
+## Development and validation
 
 ```sh
 cd aibox-mac
@@ -36,13 +38,12 @@ swift test
 zsh scripts/build-app.sh
 ```
 
-遠端程式測試：`python3 aibox-remote/tests/test_notify.py`。
-韌體主機測試：`bash aibox-firmware/tests/run.sh`。
+From the workspace root, run the remote tests with `python3 aibox-remote/tests/test_notify.py` and the firmware host tests with `bash aibox-firmware/tests/run.sh`.
 
-Mac 在 `Sources/AIBoxCore/Remote` 另以 submodule 引用同一個 `aibox-remote` repo，讓單獨 clone Mac repo 時也能打包。更新遠端程式後，需同步更新 Mac 內與本入口的引用至同一 commit。
+The Mac repository also references `aibox-remote` as a submodule at `Sources/AIBoxCore/Remote`, so it can be cloned and built independently. After changing the remote scripts, update both the Mac submodule and this entry point to the same commit.
 
-各元件應先在自己的 repo 提交與推送，再於本入口提交 submodule 版本變更。本入口的 commit 記錄一組元件版本，不代表硬體全流程已驗證；實機驗證狀態請查閱 aibox-spec。
+Commit and push changes in each component repository first, then commit the updated submodule references here. An entry point commit records a set of component versions; it does not establish that the complete hardware workflow has been verified. See aibox-spec for physical device validation records.
 
-## 發行
+## Releases
 
-目前提供原始碼，尚未建立版本標籤或 GitHub Release。日後元件可各自發行 App／韌體，入口再記錄相容版本與下載連結。
+Source code is currently available; no version tags or GitHub Releases have been created yet. Components may publish app or firmware releases independently in the future, with compatible versions and download links recorded here.
