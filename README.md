@@ -15,10 +15,10 @@ Windows App 尚未建立。此 repo 是整合入口，以 Git submodule 固定�
 
 ## 取得完整工作目錄
 
-需要對各私有 repo 有讀取權限，並設定 GitHub SSH 金鑰。
+所有元件均為公開 repository，可直接透過 HTTPS 取得，不需要 GitHub SSH 金鑰。
 
 ```sh
-git clone --recurse-submodules git@github.com:minicoursedev/aibox.git
+git clone --recurse-submodules https://github.com/minicoursedev/aibox.git
 cd aibox
 ```
 
